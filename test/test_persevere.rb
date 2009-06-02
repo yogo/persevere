@@ -12,10 +12,19 @@ p = Persevere.new('http://localhost:8080')
 # Test POST to create a new class
 #
 print "\nTesting POST..."
-tstObj = { 'id' => 'tstObj', 'extends' => { '$ref' => 'Object' } }
-result = p.create('/Class/', tstObj)
+blobObj = {
+  'id' => 'Blob',
+  'extends' => { '$ref' => 'Object' },
+  'properties' => {
+    'id' => { },
+    'cid' => { },
+    'parent' => { },
+    'data' => { }
+  }
+}
+result = p.create('/Class/', blobObj)
 print "Response:\n"
-puts result
+puts result.inspect
 
 #
 # Test GET to retrieve the list of classes from Persvr
@@ -23,21 +32,21 @@ puts result
 print "\nTesting GET..."
 result = p.retrieve('/Class')
 print "Response:\n"
-puts result
+puts result.inspect
 
 #
 # Test PUT to modify an existing class
 #
 print "\nTesting PUT..."
-tstObj['tstAttribute'] = 42
-result = p.update('/Class/tstObj', tstObj)
+blobObj['tstAttribute'] = 42
+result = p.update('/Class/Blob', blobObj)
 print "Response:\n"
-puts result
+puts result.inspect
 
 #
 # Test DELETE to remove the previously created and modified class
 #
-print "\nTesting DELETE..."
-result = p.delete('/Class/tstObj')
-print "Response:\n"
-puts result
+#print "\nTesting DELETE..."
+#result = p.delete('/Class/Blob')
+#print "Response:\n"
+#puts result

@@ -1,6 +1,6 @@
-= persevere
+= ruby persevere client
 
-* FIX (url)
+* http://github.com/irjudson/persevere
 
 == DESCRIPTION:
 

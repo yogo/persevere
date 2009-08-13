@@ -34,7 +34,7 @@ class PersevereResult
 end
 
 class Persevere
-  VERSION = '1.0.3'
+  VERSION = '1.1'
   ACCEPT = { 'Accept' => 'application/json' }
 
   attr_accessor :server_url, :pservr

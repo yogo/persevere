@@ -13,13 +13,11 @@ p = Persevere.new('http://localhost:8080')
 #
 print "\nTesting POST..."
 blobObj = {
-  'id' => 'Blob',
-  'extends' => { '$ref' => 'Object' },
+  'id' => 'Yogo',
   'properties' => {
-    'id' => { },
-    'cid' => { },
-    'parent' => { },
-    'data' => { }
+    'cid' => {'type' => 'string' },
+    'parent' => { 'type' => 'string'},
+    'data' => { 'type' => 'string'}
   }
 }
 result = p.create('/Class/', blobObj)
@@ -38,8 +36,8 @@ puts result.inspect
 # Test PUT to modify an existing class
 #
 print "\nTesting PUT..."
-blobObj['tstAttribute'] = 42
-result = p.update('/Class/Blob', blobObj)
+blobObj['properties']['tstAttribute'] = { 'type' => 'string' }
+result = p.update('/Class/Yogo', blobObj)
 print "Response:\n"
 puts result.inspect
 

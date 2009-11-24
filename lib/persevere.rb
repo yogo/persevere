@@ -35,7 +35,9 @@ end
 
 class Persevere
   VERSION = '1.1'
-  ACCEPT = { 'Accept' => 'application/json' }
+  HEADERS = { 'Accept' => 'application/json',
+              'Content-Type' => 'application/json'
+            }
 
   attr_accessor :server_url, :pservr
 
@@ -49,23 +51,24 @@ class Persevere
   # Pass in a resource hash
   def create(path, resource)
     json_blob = resource.to_json
-    response = @persevere.send_request('POST', path, json_blob, ACCEPT)
+    response = @persevere.send_request('POST', path, json_blob, HEADERS)
     return PersevereResult.make(response)
   end
 
   def retrieve(path)
-    response = @persevere.send_request('GET', path, nil, ACCEPT)
+    response = @persevere.send_request('GET', path, nil, HEADERS)
     return PersevereResult.make(response)
   end
 
   def update(path, resource)
     json_blob = resource.to_json
-    response = @persevere.send_request('PUT', path, json_blob, ACCEPT)
+    puts "JSON to PERSEVERE: #{json_blob}"
+    response = @persevere.send_request('PUT', path, json_blob, HEADERS)
     return PersevereResult.make(response)
   end
 
   def delete(path)
-    response = @persevere.send_request('DELETE', path, nil, ACCEPT)
+    response = @persevere.send_request('DELETE', path, nil, HEADERS)
     return PersevereResult.make(response)
   end
 end # class Persevere
